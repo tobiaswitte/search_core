@@ -84,7 +84,7 @@ class DataHandler implements Singleton
     public function processCmdmap_deleteAction($table, $uid)
     {
         if (! $this->shouldProcessHookForTable($table)) {
-            $this->logger->debug('Delete not processed.', [$table, $uid]);
+            $this->logger->info('Delete not processed.', [$table, $uid]);
             return false;
         }
 
@@ -106,7 +106,7 @@ class DataHandler implements Singleton
     public function processDatamap_afterDatabaseOperations($status, $table, $uid, array $fieldArray, CoreDataHandler $dataHandler)
     {
         if (! $this->shouldProcessHookForTable($table)) {
-            $this->logger->debug('Database update not processed.', [$table, $uid]);
+            $this->logger->info('Database update not processed.', [$table, $uid]);
             return false;
         }
 
@@ -124,7 +124,7 @@ class DataHandler implements Singleton
             return true;
         }
 
-        $this->logger->debug(
+        $this->logger->notice(
             'Database update not processed, cause status is unhandled.',
             [$status, $table, $uid, $fieldArray]
         );
@@ -138,11 +138,11 @@ class DataHandler implements Singleton
     protected function shouldProcessHookForTable($table)
     {
         if ($this->dataHandler === null) {
-            $this->logger->debug('Datahandler could not be setup.');
+            $this->logger->notice('Datahandler could not be setup.');
             return false;
         }
         if (! $this->dataHandler->canHandle($table)) {
-            $this->logger->debug('Table is not allowed.', [$table]);
+            $this->logger->notice('Table is not allowed.', [$table]);
             return false;
         }
 

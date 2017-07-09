@@ -56,7 +56,7 @@ abstract class AbstractIndexer implements IndexerInterface
     {
         $this->logger->info('Start indexing');
         foreach ($this->getRecordGenerator() as $records) {
-            $this->logger->debug('Index records.', [$records]);
+            $this->logger->info('Index records.', [$records]);
             if ($records === null) {
                 break;
             }
