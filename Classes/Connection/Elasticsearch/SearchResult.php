@@ -86,6 +86,7 @@ class SearchResult implements SearchResultInterface
     }
 
     // Countable - Interface
+    // @codeCoverageIgnoreStart
     /**
      * Returns the total sum of results contained in this result.
      *
@@ -121,6 +122,7 @@ class SearchResult implements SearchResultInterface
     {
         $this->result->rewind();
     }
+    // @codeCoverageIgnoreEnd
 
     protected function initResults()
     {

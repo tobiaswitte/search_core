@@ -51,14 +51,8 @@ services:
   - mysql
 
 install: make install
-
-script:
-  - make unitTests
-  - make functionalTests
-
-after_script:
-  - make uploadCodeCoverage
-  - make clean
+script: make uploadCodeCoverage
+after_script: make clean
 
 cache:
   directories:

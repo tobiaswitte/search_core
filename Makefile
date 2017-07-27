@@ -13,6 +13,8 @@ typo3DatabaseHost ?= "127.0.0.1"
 install: clean
 	COMPOSER_PROCESS_TIMEOUT=1000 composer require -vv --dev --prefer-source --ignore-platform-reqs typo3/cms="$(TYPO3_VERSION)"
 	git checkout composer.json
+	# Version conflicts with test suite, therefore download
+	composer global require 'phpunit/phpcov=*'
 
 functionalTests:
 	typo3DatabaseName=$(typo3DatabaseName) \
@@ -28,16 +30,22 @@ unitTests:
 		.Build/bin/phpunit --colors --debug -v \
 		-c Tests/Unit/UnitTests.xml
 
-uploadCodeCoverage: uploadCodeCoverageToScrutinizer uploadCodeCoverageToCodacy
+mergeCoverage: unitTests functionalTests
+	mkdir -p .Build/report-merged
+	.Build/bin/phpcov merge --html=.Build/report-merged/html .Build/report
+	.Build/bin/phpcov merge --php=.Build/report-merged/php .Build/report
+	.Build/bin/phpcov merge --clover=.Build/report-merged/clover .Build/report
+
+uploadCodeCoverage: mergeCoverage uploadCodeCoverageToScrutinizer uploadCodeCoverageToCodacy
 
 uploadCodeCoverageToScrutinizer:
 	wget https://scrutinizer-ci.com/ocular.phar && \
-	php ocular.phar code-coverage:upload --format=php-clover .Build/report/functional/clover/coverage
+		php ocular.phar code-coverage:upload --format=php-clover .Build/report-merged/clover
 
 uploadCodeCoverageToCodacy:
 	composer require -vv --dev codacy/coverage && \
-	git checkout composer.json && \
-	php .Build/bin/codacycoverage clover .Build/report/functional/clover/coverage
+		git checkout composer.json && \
+		php .Build/bin/codacycoverage clover .Build/report-merged/clover
 
 clean:
 	rm -rf .Build composer.lock

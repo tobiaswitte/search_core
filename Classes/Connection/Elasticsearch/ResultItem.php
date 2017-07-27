@@ -44,6 +44,8 @@ class ResultItem implements ResultItemInterface
         return $this->data[$offset];
     }
 
+    // @codeCoverageIgnoreStart
+
     public function offsetSet($offset, $value)
     {
         throw new \BadMethodCallException('It\'s not possible to change the search result.', 1499179077);
@@ -53,4 +55,5 @@ class ResultItem implements ResultItemInterface
     {
         throw new \BadMethodCallException('It\'s not possible to change the search result.', 1499179077);
     }
+    // @codeCoverageIgnoreEnd
 }

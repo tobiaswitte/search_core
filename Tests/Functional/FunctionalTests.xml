@@ -23,11 +23,22 @@
     <filter>
         <whitelist>
             <directory suffix=".php">../../Classes</directory>
+            <exclude>
+                <!-- Not covered with tests yet. Does not contain own logic. -->
+                <file>../../Classes/Connection/Elasticsearch/ResultItem.php</file>
+                <!-- Covered through unit tests. -->
+                <file>../../Classes/Command/IndexCommandController.php</file>
+                <file>../../Classes/Connection/Elasticsearch/IndexFactory.php</file>
+                <file>../../Classes/Connection/Elasticsearch/MappingFactory.php</file>
+                <file>../../Classes/Domain/Index/TcaIndexer/TcaTableService.php</file>
+                <file>../../Classes/Domain/Search/QueryFactory.php</file>
+            </exclude>
         </whitelist>
     </filter>
 
     <logging>
         <log type="coverage-html" target="../../.Build/report/functional/html" lowUpperBound="35" highLowerBound="70"/>
         <log type="coverage-clover" target="../../.Build/report/functional/clover/coverage"/>
+        <log type="coverage-php" target="../../.Build/report/functional/coverage.cov"/>
     </logging>
 </phpunit>

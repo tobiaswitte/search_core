@@ -22,12 +22,18 @@
 
     <filter>
         <whitelist>
-            <directory suffix=".php">../../Classes</directory>
+            <directory suffix=".php">../../Classes/Domain/Model/</directory>
+            <file>../../Classes/Command/IndexCommandController.php</file>
+            <file>../../Classes/Connection/Elasticsearch/IndexFactory.php</file>
+            <file>../../Classes/Connection/Elasticsearch/MappingFactory.php</file>
+            <file>../../Classes/Domain/Index/TcaIndexer/TcaTableService.php</file>
+            <file>../../Classes/Domain/Search/QueryFactory.php</file>
         </whitelist>
     </filter>
 
     <logging>
         <log type="coverage-html" target="../../.Build/report/unit/html" lowUpperBound="35" highLowerBound="70"/>
         <log type="coverage-clover" target="../../.Build/report/unit/clover/coverage"/>
+        <log type="coverage-php" target="../../.Build/report/unit/coverage.cov"/>
     </logging>
 </phpunit>
