@@ -1,5 +1,5 @@
 <?php
-namespace Codappix\SearchCore\Domain\Index\TcaIndexer;
+namespace Codappix\SearchCore\DataProcessing;
 
 /*
  * Copyright (C) 2016  Daniel Siepmann <coding@daniel-siepmann.de>
@@ -20,22 +20,37 @@ namespace Codappix\SearchCore\Domain\Index\TcaIndexer;
  * 02110-1301, USA.
  */
 
-use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\SingletonInterface as Singleton;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-
+use Codappix\SearchCore\DataProcessing\ProcessorInterface;
+use Codappix\SearchCore\Domain\Index\TcaIndexer\InvalidArgumentException;
+use Codappix\SearchCore\Domain\Index\TcaIndexer\TcaTableService;
 use TYPO3\CMS\Backend\Form\FormDataCompiler;
 use TYPO3\CMS\Backend\Form\FormDataGroup\TcaDatabaseRecord;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Resolves relations from TCA using TCA.
  *
  * E.g. resolves mm relations, items for selects, group db, etc.
  * Will replace the column with an array of resolved labels.
+ *
+ * TODO: Replace content for CMS 8 with new API.
  */
-class RelationResolver implements Singleton
+class RelationResolverProcessor implements ProcessorInterface
 {
+    public function processRecord(array $record, array $configuration)
+    {
+        $newRecord = $record;
+        $service = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ObjectManager::class)
+            ->get(TcaTableService::class, $configuration['tableName']);
+
+        $this->resolveRelationsForRecord($service, $newRecord);
+
+        return $newRecord;
+    }
+
     /**
      * Resolve relations for the given record.
      *

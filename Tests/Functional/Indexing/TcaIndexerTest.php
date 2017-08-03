@@ -23,7 +23,6 @@ namespace Codappix\SearchCore\Tests\Indexing;
 use Codappix\SearchCore\Configuration\ConfigurationContainerInterface;
 use Codappix\SearchCore\Connection\Elasticsearch;
 use Codappix\SearchCore\Domain\Index\TcaIndexer;
-use Codappix\SearchCore\Domain\Index\TcaIndexer\RelationResolver;
 use Codappix\SearchCore\Domain\Index\TcaIndexer\TcaTableService;
 use Codappix\SearchCore\Tests\Functional\AbstractFunctionalTestCase;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
@@ -49,7 +48,6 @@ class TcaIndexerTest extends AbstractFunctionalTestCase
         $tableService = $objectManager->get(
             TcaTableService::class,
             $tableName,
-            $objectManager->get(RelationResolver::class),
             $objectManager->get(ConfigurationContainerInterface::class)
         );
 

@@ -1,5 +1,5 @@
 <?php
-namespace Codappix\SearchCore\Tests\Indexing\TcaIndexer;
+namespace Codappix\SearchCore\Tests\DataProcessing;
 
 /*
  * Copyright (C) 2016  Daniel Siepmann <coding@daniel-siepmann.de>
@@ -20,13 +20,13 @@ namespace Codappix\SearchCore\Tests\Indexing\TcaIndexer;
  * 02110-1301, USA.
  */
 
-use Codappix\SearchCore\Domain\Index\TcaIndexer\TcaTableService;
+use Codappix\SearchCore\DataProcessing\RelationResolverProcessor;
 use Codappix\SearchCore\Tests\Functional\AbstractFunctionalTestCase;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
-class RelationResolverTest extends AbstractFunctionalTestCase
+class RelationResolverProcessorTest extends AbstractFunctionalTestCase
 {
     /**
      * @test
@@ -41,9 +41,9 @@ class RelationResolverTest extends AbstractFunctionalTestCase
         // We use this field to test inline relations, as there is only one alternative.
         $GLOBALS['TCA']['sys_file']['types'][1]['showitem'] .= ',metadata';
 
-        $subject = $objectManager->get(TcaTableService::class, $table);
+        $subject = $objectManager->get(RelationResolverProcessor::class);
         $record = BackendUtility::getRecord($table, 1);
-        $subject->prepareRecord($record);
+        $record = $subject->processRecord($record, ['tableName' => $table]);
 
         $this->assertEquals(
             [
@@ -64,9 +64,9 @@ class RelationResolverTest extends AbstractFunctionalTestCase
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $table = 'tt_content';
 
-        $subject = $objectManager->get(TcaTableService::class, $table);
+        $subject = $objectManager->get(RelationResolverProcessor::class);
         $record = BackendUtility::getRecord($table, 1);
-        $subject->prepareRecord($record);
+        $record = $subject->processRecord($record, ['tableName' => $table]);
 
         $this->assertEquals(
             'Insert Plugin',
@@ -84,9 +84,9 @@ class RelationResolverTest extends AbstractFunctionalTestCase
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $table = 'tt_content';
 
-        $subject = $objectManager->get(TcaTableService::class, $table);
+        $subject = $objectManager->get(RelationResolverProcessor::class);
         $record = BackendUtility::getRecord($table, 1);
-        $subject->prepareRecord($record);
+        $record = $subject->processRecord($record, ['tableName' => $table]);
 
         $this->assertEquals(
             [
@@ -107,9 +107,9 @@ class RelationResolverTest extends AbstractFunctionalTestCase
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $table = 'tt_content';
 
-        $subject = $objectManager->get(TcaTableService::class, $table);
+        $subject = $objectManager->get(RelationResolverProcessor::class);
         $record = BackendUtility::getRecord($table, 1);
-        $subject->prepareRecord($record);
+        $record = $subject->processRecord($record, ['tableName' => $table]);
 
         $this->assertEquals(
             [

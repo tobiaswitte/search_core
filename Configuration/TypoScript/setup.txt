@@ -22,6 +22,12 @@ plugin {
                     indexer = Codappix\SearchCore\Domain\Index\TcaIndexer\PagesIndexer
                     additionalWhereClause = {$plugin.tx_searchcore.settings.indexing.pages.additionalWhereClause}
                     abstractFields = {$plugin.tx_searchcore.settings.indexing.pages.abstractFields}
+                    dataProcessing {
+                        10 = Codappix\SearchCore\DataProcessing\RelationResolverProcessor
+                        10 {
+                            tableName = pages
+                        }
+                    }
                 }
             }
         }

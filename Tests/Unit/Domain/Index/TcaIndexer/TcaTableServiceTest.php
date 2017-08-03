@@ -110,7 +110,6 @@ class TcaTableServiceTest extends AbstractUnitTestCase
             ->getMock();
         $this->inject($subject, 'configuration', $this->configuration);
         $this->inject($subject, 'tableName', 'testTable');
-        $this->inject($subject, 'relationResolver', $this->getMockBuilder(RelationResolver::class)->getMock());
 
         $record = ['field 1' => 'test'];
         $expectedRecord = $record;

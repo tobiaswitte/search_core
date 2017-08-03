@@ -55,11 +55,6 @@ class TcaTableService
     protected $logger;
 
     /**
-     * @var RelationResolver
-     */
-    protected $relationResolver;
-
-    /**
      * Inject log manager to get concrete logger from it.
      *
      * @param \TYPO3\CMS\Core\Log\LogManager $logManager
@@ -75,7 +70,6 @@ class TcaTableService
      */
     public function __construct(
         $tableName,
-        RelationResolver $relationResolver,
         ConfigurationContainerInterface $configuration
     ) {
         if (!isset($GLOBALS['TCA'][$tableName])) {
@@ -88,7 +82,6 @@ class TcaTableService
         $this->tableName = $tableName;
         $this->tca = &$GLOBALS['TCA'][$this->tableName];
         $this->configuration = $configuration;
-        $this->relationResolver = $relationResolver;
     }
 
     /**
@@ -133,8 +126,6 @@ class TcaTableService
      */
     public function prepareRecord(array &$record)
     {
-        $this->relationResolver->resolveRelationsForRecord($this, $record);
-
         try {
             foreach ($this->configuration->get('indexing.' . $this->tableName . '.dataProcessing') as $configuration) {
                 $dataProcessor = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($configuration['_typoScriptNodeValue']);

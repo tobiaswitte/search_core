@@ -17,6 +17,13 @@ plugin {
                         AND tt_content.bodytext != ''
                     )
 
+                    dataProcessing {
+                        10 = Codappix\SearchCore\DataProcessing\RelationResolverProcessor
+                        10 {
+                            tableName = tt_content
+                        }
+                    }
+
                     mapping {
                         CType {
                             type = keyword
@@ -27,6 +34,13 @@ plugin {
                 pages {
                     indexer = Codappix\SearchCore\Domain\Index\TcaIndexer\PagesIndexer
                     abstractFields = abstract, description, bodytext
+
+                    dataProcessing {
+                        10 = Codappix\SearchCore\DataProcessing\RelationResolverProcessor
+                        10 {
+                            tableName = pages
+                        }
+                    }
 
                     mapping {
                         CType {
