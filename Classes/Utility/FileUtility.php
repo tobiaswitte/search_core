@@ -42,7 +42,7 @@ class FileUtility implements FileUtilityInterface
     {
         $filePath = GeneralUtility::getFileAbsFileName($filePath, false);
 
-        if (!is_file($filePath) && $mode[0] !== 'a') {
+        if (!is_file($filePath) && $mode[0] !== 'r') {
             GeneralUtility::mkdir_deep(dirname($filePath));
         }
 
