@@ -22,17 +22,18 @@ namespace Codappix\SearchCore\Tests\Unit\Utility;
 
 use Codappix\SearchCore\Tests\Unit\AbstractUnitTestCase;
 use Codappix\SearchCore\Utility\FileUtility;
+use org\bovigo\vfs\vfsStream;
 
 class FileUtilityTest extends AbstractUnitTestCase
 {
     /**
-     * @var FileUtility
+     * @var \org\bovigo\vfs\vfsStreamDirectory
      */
-    protected $subject;
+    protected $fileSystem;
 
     public function setUp()
     {
-        $this->subject = new FileUtility();
+        $this->fileSystem = vfsStream::setup('root');
     }
 
     public function tearDown()
@@ -46,6 +47,7 @@ class FileUtilityTest extends AbstractUnitTestCase
      */
     public function recursiveFilePathGetsCreatedForAllowedModes($mode)
     {
+        $subject = new FileUtility();
         $filePath = implode(DIRECTORY_SEPARATOR, [
             $this->getFilesystemPathForTests(), 'Subfolder1', 'Subfolder2', 'Examplefile.txt',
         ]);
@@ -53,7 +55,7 @@ class FileUtilityTest extends AbstractUnitTestCase
         $folderPath = dirname($filePath);
         $this->assertFalse(file_exists($folderPath), 'Folder exists before creation.');
 
-        $this->subject->getFile($filePath, $mode);
+        $subject->getFile($filePath, $mode);
 
         $this->assertTrue(file_exists($folderPath), 'Folder was not created.');
     }
@@ -64,6 +66,7 @@ class FileUtilityTest extends AbstractUnitTestCase
      */
     public function recursiveFilePathGetsNotCreatedForUnallowedModes($mode)
     {
+        $subject = new FileUtility();
         $filePath = implode(DIRECTORY_SEPARATOR, [
             $this->getFilesystemPathForTests(), 'Subfolder1', 'Subfolder2', 'Examplefile.txt',
         ]);
@@ -72,7 +75,46 @@ class FileUtilityTest extends AbstractUnitTestCase
         $this->assertFalse(file_exists($folderPath), 'Folder exists before calling subject.');
 
         $this->expectException(\RuntimeException::class);
-        $this->subject->getFile($filePath, $mode);
+        $subject->getFile($filePath, $mode);
+    }
+
+    /**
+     * @test
+     */
+    public function filteringFileProcessingWorks()
+    {
+        $inputFileName = 'root/input.txt';
+        $outputFileName = 'root/output.txt';
+        $originalContent = implode(PHP_EOL, ['# Skipped', 'Line 1', '# Skipped', 'Line 2', '# Skipped', 'Line 3']);
+        $expectedContent = implode(PHP_EOL, ['Line 1', 'Line 2', 'Line 3']);
+
+        $inputFile = vfsStream::url($inputFileName);
+        file_put_contents($inputFile, $originalContent);
+        $inputFileObject = new \SplFileObject($inputFile);
+        $subject = $this->getMockBuilder(FileUtility::class)
+            ->setMethodsExcept(['processFile', 'getFileContents'])
+            ->getMock();
+        $subject->expects($this->once())
+            ->method('getFile')
+            ->with($this->equalTo($inputFile))
+            ->will($this->returnValue($inputFileObject));
+
+        $subject->processFile(
+            vfsStream::url($inputFileName),
+            new \SplFileObject(vfsStream::url($outputFileName), 'w+'),
+            function ($line) {
+                return $line[0] === '#';
+            },
+            function ($line) {
+                return $line;
+            }
+        );
+
+        $this->assertSame(
+            $expectedContent,
+            file_get_contents(vfsStream::url($outputFileName)),
+            'Lines were not filtered as expected.'
+        );
     }
 
     public function creationModes()
