@@ -1,0 +1,53 @@
+# OpenThesaurus - German Thesaurus in text format
+# Automatically generated 2017-08-14 23:01
+# https://www.openthesaurus.de
+# Copyright (C) 2003-2017 Daniel Naber (naber at danielnaber de)
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+Kernfission;Fission;Atomspaltung;Kernspaltung
+Wiederaufnahme;Fortführung
+davonfahren;aufbrechen;abdüsen (ugs.);abreisen;wegfahren;wegfliegen;abfahren;abfliegen;(von etwas) fortfahren
+Konzessions...;Deputat...
+Seminar;Bildungsmaßnahme;Workshop;Kursus;Schulung;Kurs;Lehrgang;Weiterbildung;Training
+Mangelhaftigkeit;Defizienz
+(etwas) Verbotenes tun (Hauptform);böse sein (ugs., Kindersprache);(ein) böses Kind sein (ugs., Kindersprache, variabel);(eine Regel) mit den Füßen treten (ugs.);vom süßen Gift (des / der ...) naschen (geh., ironisierend, literarisch);missachten;zuwiderhandeln;(sich) hinwegsetzen (über)
+überwachen;beaufsichtigen
+Moralvorstellungen;Wertvorstellungen;Wertesystem;sittliche Werte;Sittlichkeit;Ethik;Wertmaßstäbe;Moral;moralische Werte
+in einem Muskel;intramuskulär (fachspr.)
+Bewegungsgröße;Impuls
+Schmähung;Herabwürdigung;Diffamie (geh.);Diffamierung;Diffamation (geh.);Verunglimpfung;Rufschädigung;Verleumdung
+Dichtungsband;Dichtband
+Mensch der Altsteinzeit;Urmensch
+aus etwas schlau werden (ugs.);etwas verstehen
+Ankerplatz;Ankergrund
+Adressat;Auftraggeber;Kunde;Mandant
+Sozialdemokraten;(die) alte Tante SPD (ugs.);Sozis (ugs., abwertend);SPD;(die) Sozen (ugs.);Sozialdemokratische Partei Deutschlands
+Kulturhoheit;Kulturautonomie
+Brevität;Kürze;Komprimiertheit;Lakonik (geh.);Prägnanz
+weder Tod noch Teufel fürchten (geh., veraltet);keine Angst kennen;kühn;couragiert;wagemutig;wacker;mutig (Hauptform);tapfer;(echt) Eier in der Hose haben (ugs., fig., salopp)
+zu viel bezahlen;überbezahlen;zu hoch bezahlen;überzahlen
+einfach;nachgerade (geh.);schlechthin (geh.);glatt;rundweg;schlichtweg;reinweg;direktemang (ugs.);schlankweg (ugs.);schlechterdings (geh., veraltend);reinewegs;geradezus (ugs., regional);schlechtweg;gerade;schlicht;freilich (ugs., süddt.);reinwegs;geradezu;gradweg (ugs.);schlankwegs;schlechtwegs;direkt;schlicht und einfach;glattweg;rein (ugs.);durchaus;geradewegs;schlichtwegs;glattwegs;platterdings
+schlecht unterrichtet;schlecht informiert
+Verzerrung;Verkrümmung
+Pastinake;Pastinak;Moorwurzel
+sintern;fritten (fachspr.);schmelzen
+glitschig (Hauptform);flutschig;schleimig;ölig;schlierig;schmierig
+Europäischer Fußballverband;UEFA
+doppeldeutig;ambigue (geh.);doppelsinnig;doppelwertig;ambig (geh.);uneindeutig;mit zweifacher Bedeutung (Hauptform);zweideutig;janusköpfig (geh.);ambivalent;kann man so oder so verstehen (ugs.);zweigesichtig (geh.)
+Schenkung;Gabe;Stiftung;Dotierung
+gut in Form;athletisch;topfit;durchtrainiert (ugs.)
+(sich) bemüßigt sehen (zu);müssen;(etwas) zu tun haben;nicht anders können, als...;(sich) genötigt sehen;genötigt sein;nicht umhinkönnen (zu);tun müssen;(sich) gezwungen sehen;(sich) bemüßigt fühlen (zu);(sich) veranlasst sehen;nicht umhinkommen (zu);gezwungen sein
+wahrheitsgetreu;wahr;wahrhaftig;der Wahrheit entsprechend;wahrheitsgemäß;aufrichtig
+urzeitlich;urgeschichtlich;prähistorisch

@@ -66,4 +66,13 @@ abstract class AbstractFunctionalTestCase extends CoreTestCase
     {
         return ['EXT:search_core/Tests/Functional/Fixtures/BasicSetup.ts'];
     }
+
+    /**
+     * @param string
+     * @return string
+     */
+    protected function getFixtureFile($filename)
+    {
+        return implode(DIRECTORY_SEPARATOR, [__DIR__, 'Fixtures', $filename]);
+    }
 }
