@@ -86,7 +86,7 @@ class FileUtilityTest extends AbstractUnitTestCase
         $inputFileName = 'root/input.txt';
         $outputFileName = 'root/output.txt';
         $originalContent = implode(PHP_EOL, ['# Skipped', 'Line 1', '# Skipped', 'Line 2', '# Skipped', 'Line 3']);
-        $expectedContent = implode(PHP_EOL, ['Line 1', 'Line 2', 'Line 3']);
+        $expectedContent = implode(PHP_EOL, ['Line 1', 'Line 3']);
 
         $inputFile = vfsStream::url($inputFileName);
         file_put_contents($inputFile, $originalContent);
@@ -106,6 +106,10 @@ class FileUtilityTest extends AbstractUnitTestCase
                 return $line[0] === '#';
             },
             function ($line) {
+                if (strpos($line, 'Line 2') === 0) {
+                    return false;
+                }
+
                 return $line;
             }
         );
