@@ -47,3 +47,4 @@ The following sections contains the different options grouped by their applied a
    configuration/connections
    configuration/indexing
    configuration/searching
+   configuration/helpers

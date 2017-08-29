@@ -27,6 +27,17 @@ Also multiple filter are supported. Filtering results by fields for string conte
 Facets / aggregates are also possible. Therefore a mapping has to be defined in TypoScript for
 indexing, and the facets itself while searching.
 
+.. _features_helpers:
+
+Helpers
+-------
+
+The extension delivers some small helpers for common tasks related to searching.
+
+E.g. converters are provided to convert existing file formats into usable formats for Elasticsearch.
+
+See: :ref:`helpers`.
+
 .. _features_planned:
 
 Planned
