@@ -20,31 +20,25 @@ namespace Codappix\SearchCore\DataProcessing;
  * 02110-1301, USA.
  */
 
-/**
- * Copies values from one field to another one.
- */
-class CopyToProcessor implements ProcessorInterface
-{
-    public function processRecord(array $record, array $configuration)
-    {
-        $all = [];
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-        $this->addArray($all, $record);
-        $all = array_filter($all);
-        $record[$configuration['to']] = implode(PHP_EOL, $all);
+/**
+ * Removes fields from record.
+ */
+class RemoveProcessor implements ProcessorInterface
+{
+    public function processRecord(array $record, array $configuration) : array
+    {
+        if (!isset($configuration['fields'])) {
+            return $record;
+        }
+
+        foreach (GeneralUtility::trimExplode(',', $configuration['fields'], true) as $field) {
+            if (array_key_exists($field, $record)) {
+                unset($record[$field]);
+            }
+        }
 
         return $record;
-    }
-
-    protected function addArray(array &$target, array $from)
-    {
-        foreach ($from as $value) {
-            if (is_array($value)) {
-                $this->addArray($target, $value);
-                continue;
-            }
-
-            $target[] = (string) $value;
-        }
     }
 }

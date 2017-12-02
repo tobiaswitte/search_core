@@ -100,9 +100,9 @@ class ProcessesAllowedTablesTest extends AbstractDataHandlerTest
             ->with(
                 $this->equalTo('tt_content'),
                 $this->callback(function ($record) {
-                    return isset($record['uid']) && $record['uid'] == 2
-                        && isset($record['pid']) && $record['pid'] == 1
-                        && isset($record['header']) && $record['header'] == 'a new record'
+                    return isset($record['uid']) && $record['uid'] === 2
+                        && isset($record['pid']) && $record['pid'] === 1
+                        && isset($record['header']) && $record['header'] === 'a new record'
                         ;
                 })
             );
